@@ -1,13 +1,13 @@
-package ifpr.pgua.eic.tads.banco;
+package ifpr.pgua.eic.tads.banco.entidades;
 
 //importações
 
-public class ContaBancaria{
+public abstract class ContaBancaria{
 
     //atributos
     private String agencia;
     private String numero;
-    private double saldo=0;
+    protected double saldo=0;
     private Pessoa cliente;
 
 
@@ -62,7 +62,7 @@ public class ContaBancaria{
 
 
     //metodos
-    String depositar(double valor){
+    public String depositar(double valor){
 
         if(valor < 0){
             return "Valor inválido!";
@@ -71,7 +71,7 @@ public class ContaBancaria{
         return "ok";
     }
 
-    String sacar(double valor){
+    public String sacar(double valor){
         if(valor < 0){
             return "Valor inválido!";
             //return false;
@@ -87,7 +87,7 @@ public class ContaBancaria{
 
     }
 
-    String mostrarSaldo(){
+    public String gerarExtrato(){
         String texto="";
 
         texto = "Agência: " + agencia +
@@ -97,5 +97,13 @@ public class ContaBancaria{
 
         return texto;
     }
+    public abstract String tipo();
+
+
+    //hook method
+    public String tipoCompleto(){
+        return "Este objeto é do tipo"+tipo();
+    }
+
 
 }
